@@ -1,2 +1,2 @@
 # web-componentes-drops
-Componentes web customizados
+Web componetes para qualquer stack
