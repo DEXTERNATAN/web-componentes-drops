@@ -1,5 +1,5 @@
 import { Component, State, Listen, Watch, h } from "@stencil/core";
-import { format } from '../../utils/utils';
+
 
 @Component({
   tag: "todo-list",

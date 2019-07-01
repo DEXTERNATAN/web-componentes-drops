@@ -1,0 +1,23 @@
+{
+  "name": "web-componentes-drops",
+  "version": "1.0.0",
+  "description": "Conjunto de web componentes para serem usados em qualquer projeto",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DEXTERNATAN/web-componentes-drops.git"
+  },
+  "keywords": [
+    "webcomponents",
+    "stencil.js"
+  ],
+  "author": "natanael.leite",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DEXTERNATAN/web-componentes-drops/issues"
+  },
+  "homepage": "https://github.com/DEXTERNATAN/web-componentes-drops#readme"
+}
