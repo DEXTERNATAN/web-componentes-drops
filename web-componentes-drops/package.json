@@ -20,8 +20,32 @@
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
-  "devDependencies": {
-    "@stencil/core": "^1.0.7"
+  "dependencies": {
+    "bootstrap": "^4.3.1"
   },
-  "license": "MIT"
+  "devDependencies": {
+    "@stencil/core": "^1.0.7",
+    "@types/jest": "^21.1.1",
+    "jest": "^21.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DEXTERNATAN/web-componentes-drops"
+  },
+  "author": "Natanael de Sousa Leite",
+  "license": "MIT",
+  "homepage": "https://github.com/DEXTERNATAN/web-componentes-drops",
+  "jest": {
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json",
+      "jsx"
+    ]
+  }
 }

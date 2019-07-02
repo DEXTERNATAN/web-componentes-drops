@@ -1,26 +1,38 @@
 import { Component, State, Listen, Watch, h } from "@stencil/core";
 
-
 @Component({
   tag: "todo-list",
-  styleUrl: "todo-list.css"
+  styleUrl: "todo-list.css",
+  shadow: true
 })
 export class TodoList {
+  // Tarefas concluidas
   @State() concluidas: number = 0;
-  @State() tarefas: Array<{ feito: boolean; descricao: string }> = [];
+  // Minhas tarefas
+  @State()
+  tarefas: Array<{ feito: boolean; descricao: string }> = [];
+  // bind do campo de input
   @State() input: string = "";
+  // Escuta o evento de 'enter' e executa o metodo de salvar.
   @Listen('keydown')
   onEnter(ev: KeyboardEvent) {
     if (ev.key === 'Enter') {
       this.salvar();
     }
   }
+  // Watcher de tarefas concluidas
   @Watch('tarefas') watchaTarefasConcluidas(newValue: Array<any>) {
-    this.concluidas = newValue.reduce((count, val, i, newValue) => val.feito ? ++count : count, 0);
+    this.concluidas = newValue.reduce((count, val ) => val.feito ? ++count : count, 0);
   }
 
+  /**
+   * Manipula o valor do input
+   */
   changeInputValue = ev => this.input = ev.target.value;
 
+  /**
+   * Grava uma nova tarefa no array de tarefas
+   */
   salvar = () => {
     if (this.input != "" && this.input.trim() != "") {
       this.tarefas = [...this.tarefas, { descricao: this.input, feito: false }];
@@ -28,17 +40,20 @@ export class TodoList {
     }
   }
 
+  // Marca uma tarefa como concluida.
   tarefaConcluida = (tarefa: CustomEvent) => {
     this.tarefas[tarefa.detail.pos].feito = tarefa.detail.feito;
     this.tarefas = [...this.tarefas];
   }
 
+  // Exclui uma tarefa do array de tarefas
   excluirTarefas = (ev: CustomEvent) => {
     this.tarefas.splice(ev.detail, 1);
     this.tarefas = [...this.tarefas];
   }
 
   render() {
+    // BEM: Metodologia de CSS - Block Element Modifier
     return (
       <div class="todo">
         <h2 class="titulo">Lista de tarefas</h2>

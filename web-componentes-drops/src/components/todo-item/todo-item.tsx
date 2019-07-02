@@ -1,36 +1,47 @@
-import { Component, Prop, h, Event, EventEmitter, State } from '@stencil/core';
-
-
+import { Component, Prop, Event, EventEmitter, State, h } from '@stencil/core';
 
 @Component({
-  tag: 'todo-item',
-  styleUrl: 'todo-item.css',
-  shadow: true
+    tag: 'todo-item',
+    styleUrl: "todo-item.css"
 })
 export class TodoItem {
-  @Prop() posicao: number;
-  @Prop() descricao: string;
-  @State() feito: boolean = false;
-  @Event() excluiItem: EventEmitter;
-  @Event() marcaFeito: EventEmitter
+    /**
+     * Propriedades de um item da lista
+     */
+    @Prop() posicao: number;
+    @Prop() descricao: string;
+    @State() feito: boolean = false;
 
-  excluirTarefas = () => this.excluiItem.emit(this.posicao);
+    /**
+     * Event emitters
+     */
+    @Event() excluiItem: EventEmitter;
+    @Event() marcaFeito: EventEmitter
 
-  tarefaConcluida = () => {
-    this.feito = !this.feito;
-    this.marcaFeito.emit({ pos: this.posicao, feito: this.feito });
-  }
+    /**
+     * Emite o evento para excluir uma tarefa
+     */
+    excluirTarefas = () => this.excluiItem.emit(this.posicao);
 
-  render() {
-    return (
-      <div class="tarefa">
-        <div>Teste</div>
-        <div>
-          <input type="checkbox" class="tarefa--alterar" checked={this.feito} onChange={() => this.tarefaConcluida()} />
-          <label class={`${this.feito ? 'concluido' : ''} tarefa--descricao`} onClick={() => this.tarefaConcluida()}>{this.descricao}</label>
-        </div>
-        <button class="tarefa--botao" onClick={() => this.excluirTarefas()}>&#215;</button>
-      </div>
-    );
-  }
+    /**
+     * Conclui uma tarefa
+     */
+    tarefaConcluida = () => {
+        this.feito = !this.feito;
+        this.marcaFeito.emit({ pos: this.posicao, feito: this.feito });
+    }
+
+    render() {
+        return (
+            <div class="tarefa">
+                <div>
+                    <input type="checkbox" class="tarefa--alterar" checked={this.feito} onChange={() => this.tarefaConcluida()} />
+                    <label class={`${this.feito ? 'concluido' : ''} tarefa--descricao`} onClick={() => this.tarefaConcluida()}>
+                    {this.descricao}
+                    </label>
+                </div>
+                <button class="tarefa--botao" onClick={() => this.excluirTarefas()}>&#215;</button>
+            </div>
+        );
+    }
 }

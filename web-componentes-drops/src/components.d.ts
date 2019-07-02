@@ -25,6 +25,9 @@ export namespace Components {
   }
   interface TodoItem {
     'descricao': string;
+    /**
+    * Propriedades de um item da lista
+    */
     'posicao': number;
   }
   interface TodoList {}
@@ -74,8 +77,14 @@ declare namespace LocalJSX {
   }
   interface TodoItem extends JSXBase.HTMLAttributes<HTMLTodoItemElement> {
     'descricao'?: string;
+    /**
+    * Event emitters
+    */
     'onExcluiItem'?: (event: CustomEvent<any>) => void;
     'onMarcaFeito'?: (event: CustomEvent<any>) => void;
+    /**
+    * Propriedades de um item da lista
+    */
     'posicao'?: number;
   }
   interface TodoList extends JSXBase.HTMLAttributes<HTMLTodoListElement> {}
