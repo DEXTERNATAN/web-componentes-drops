@@ -9,6 +9,12 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
+  interface BtnComponent {
+    /**
+    * The type name
+    */
+    'type': string;
+  }
   interface MyComponent {
     /**
     * The first name
@@ -36,6 +42,12 @@ export namespace Components {
 declare global {
 
 
+  interface HTMLBtnComponentElement extends Components.BtnComponent, HTMLStencilElement {}
+  var HTMLBtnComponentElement: {
+    prototype: HTMLBtnComponentElement;
+    new (): HTMLBtnComponentElement;
+  };
+
   interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
   var HTMLMyComponentElement: {
     prototype: HTMLMyComponentElement;
@@ -54,6 +66,7 @@ declare global {
     new (): HTMLTodoListElement;
   };
   interface HTMLElementTagNameMap {
+    'btn-component': HTMLBtnComponentElement;
     'my-component': HTMLMyComponentElement;
     'todo-item': HTMLTodoItemElement;
     'todo-list': HTMLTodoListElement;
@@ -61,6 +74,12 @@ declare global {
 }
 
 declare namespace LocalJSX {
+  interface BtnComponent extends JSXBase.HTMLAttributes<HTMLBtnComponentElement> {
+    /**
+    * The type name
+    */
+    'type'?: string;
+  }
   interface MyComponent extends JSXBase.HTMLAttributes<HTMLMyComponentElement> {
     /**
     * The first name
@@ -90,6 +109,7 @@ declare namespace LocalJSX {
   interface TodoList extends JSXBase.HTMLAttributes<HTMLTodoListElement> {}
 
   interface IntrinsicElements {
+    'btn-component': BtnComponent;
     'my-component': MyComponent;
     'todo-item': TodoItem;
     'todo-list': TodoList;
